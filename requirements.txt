@@ -1,0 +1,8 @@
+# Core (pure-stdlib modules need nothing beyond the standard library)
+# GPU / model stack (installed on Colab):
+torch>=2.1
+ultralytics>=8.2        # YOLO11 (yolo11s.pt)
+diffusers>=0.27
+transformers>=4.40
+accelerate
+pycocotools
