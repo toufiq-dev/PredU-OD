@@ -1,0 +1,53 @@
+{
+  "paths": {
+    "coco_ann": "data/instances_train2017.json",
+    "coco_img_dir": "data/train2017",
+    "subset_out": "data/coco10",
+    "pool_out": "data/pool",
+    "runs_out": "runs",
+    "results_out": "results"
+  },
+  "coco_subset": {
+    "fraction": 0.1,
+    "seed": 42,
+    "min_anns_per_image": 1
+  },
+  "generation": {
+    "generator": "gligen",
+    "resolution": 512,
+    "model_id": "masterful/gligen-1-4-generation-text-box",
+    "n_images": 300,
+    "n_pools": 3,
+    "seed": 7,
+    "strata": ["class", "scale", "count", "context"]
+  },
+  "detector": {
+    "model_name": "yolo11s.pt",
+    "imgsz": 512,
+    "epochs_baseline": 60,
+    "epochs_probe": 30,
+    "batch": 16,
+    "seed": 42,
+    "conf": 0.05,
+    "iou_thr": 0.5
+  },
+  "failure": {
+    "match_iou": 0.5,
+    "el2n_window_epoch": 5,
+    "el2n_epochs_total": 30
+  },
+  "probes": {
+    "sizes": [100, 150, 250],
+    "n_subsets": 12,
+    "n_seeds_duplicate": 2,
+    "strata_col": "class_entropy"
+  },
+  "gates": {
+    "box_fidelity_min": 0.55,
+    "snr_min": 1.0,
+    "corr_fd_warn": 0.9,
+    "prelim_tau_min": 0.3,
+    "gpu_hours_per_probe_max": 0.6,
+    "probe_delta_noise_floor": 0.15
+  }
+}
